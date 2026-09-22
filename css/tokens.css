@@ -1,0 +1,50 @@
+:root {
+  --fuente-principal: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --font-tamano-base: 16px;
+  --font-peso-base: 400;
+  --font-altura-linea-base: 24px;
+  --font-tamano-xs: 14px;
+
+  --color-texto-primario: #ffffff;
+  --color-texto-secundario: rgba(255, 255, 255, 0.75);
+  --color-texto-atenuado: rgba(255, 255, 255, 0.55);
+  --color-superficie-base: #0a0624;
+  --color-superficie-elevada: #120d33;
+  --color-superficie-azul: #003399;
+  --color-borde: rgba(255, 255, 255, 0.14);
+  --color-borde-fuerte: #ffffff;
+  --color-acento: #e6007e;
+  --color-acento-hover: #ff1a95;
+  --color-acento-active: #be0068;
+  --color-acento-texto: #ffffff;
+  --color-acento-rosa: #ff4fb0;
+  --color-acento-fondo: rgba(230, 0, 126, 0.16);
+  --resplandor-acento: 0 0 22px rgba(230, 0, 126, 0.6);
+  --resplandor-acento-suave: 0 0 14px rgba(230, 0, 126, 0.4);
+  --color-error: #ff6b6b;
+  --color-error-texto: #ff8f8f;
+  --color-exito: #8be08b;
+
+  --espacio-1: 6px;
+  --espacio-2: 8px;
+  --espacio-3: 12px;
+  --espacio-seccion: 48px;
+
+  --tamano-titulo-hero: 28px;
+  --altura-titulo-hero: 36px;
+  --tamano-titulo: 22px;
+  --altura-titulo: 30px;
+  --tamano-subtitulo: 16px;
+  --altura-subtitulo: 22px;
+  --peso-semibold: 600;
+
+  --radio-xs: 6px;
+
+  --sombra-1: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+  --motion-instant: 60ms;
+  --motion-fast: 450ms;
+}
