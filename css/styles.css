@@ -480,6 +480,39 @@ button {
   font-size: 15px;
 }
 
+/* Beneficios de tu cupón */
+.beneficios {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 14px;
+}
+
+.beneficios__item {
+  padding: 22px;
+  border-radius: var(--radio-xl);
+  background: var(--color-superficie-tarjeta);
+  border: 1px solid var(--color-borde);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.beneficios__titulo {
+  margin: 0;
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.beneficios__texto {
+  margin: 0;
+  color: var(--color-texto-suave);
+  line-height: 1.5;
+  font-size: 15px;
+}
+
 /* Registro */
 .registro {
   padding-bottom: clamp(48px, 6vw, 96px);
