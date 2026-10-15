@@ -257,6 +257,13 @@ button {
   color: var(--color-acento);
 }
 
+.hero__nota {
+  margin: -10px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-texto-suave);
+}
+
 .hero__descripcion {
   margin: 0;
   max-width: 520px;
@@ -994,6 +1001,66 @@ button {
 
 .terminos__texto {
   margin: 0;
+}
+
+.terminos__lista {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.terminos__lista ul {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.terminos__lista strong {
+  color: var(--color-texto-primario);
+}
+
+.terminos__tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+}
+
+.terminos__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.terminos__tabla th,
+.terminos__tabla td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.terminos__tabla tr:last-child th,
+.terminos__tabla tr:last-child td {
+  border-bottom: 0;
+}
+
+.terminos__tabla thead th {
+  background: var(--color-superficie-sutil);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-acento-rosa);
+}
+
+.terminos__tabla tbody th {
+  font-weight: 800;
+  color: var(--color-texto-primario);
+  min-width: 180px;
 }
 
 .terminos__aceptar {

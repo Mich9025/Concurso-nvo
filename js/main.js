@@ -1,10 +1,10 @@
 (() => {
   // ---------------------------------------------------------------------------
-  // Navegación entre vistas (Inicio / Ranking / Términos) por hash
+  // Navegación entre vistas (Inicio / Ranking) por hash
   // ---------------------------------------------------------------------------
   const vistas = document.querySelectorAll("main[data-vista]");
   const enlacesNavegacion = document.querySelectorAll(".navegacion__enlace[data-vista]");
-  const VISTAS_VALIDAS = ["inicio", "ranking", "terminos"];
+  const VISTAS_VALIDAS = ["inicio", "ranking"];
 
   function mostrarVista(nombre) {
     vistas.forEach((vista) => {
@@ -24,6 +24,12 @@
 
   function enrutar() {
     const hash = window.location.hash.replace("#", "");
+
+    // Los términos ahora viven en su propia página; se conservan los enlaces antiguos
+    if (hash === "terminos") {
+      window.location.replace("terminos.html");
+      return;
+    }
 
     if (hash === "registro") {
       mostrarVista("inicio");
@@ -154,12 +160,7 @@
     }
   });
 
-  // "Acepto, quiero registrarme" desde la vista de términos marca el consentimiento
-  document.querySelector("#boton-aceptar-terminos").addEventListener("click", () => {
-    campoConsentimiento.checked = true;
-    validarConsentimiento();
-  });
-
+  // "Acepto, quiero registrarme" desde las páginas legales llega con ?aceptar=true
   if (window.location.search.includes("aceptar=true")) {
     campoConsentimiento.checked = true;
   }
@@ -372,7 +373,7 @@
   }
 
   function actualizarEstado(texto) {
-    rankingEstado.textContent = `${texto} · Corte mensual el último día de cada mes.`;
+    rankingEstado.textContent = `${texto} · Redenciones del 1 al 30 de noviembre.`;
   }
 
   async function cargarRanking() {
