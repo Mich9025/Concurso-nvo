@@ -165,10 +165,21 @@
     campoConsentimiento.checked = true;
   }
 
-  // Punto de integración con el backend de inscripciones.
-  // Hoy es una simulación: reemplazar por el fetch real cuando exista el endpoint.
-  function enviarRegistro(datos) {
-    return new Promise((resolver) => setTimeout(() => resolver(datos), 800));
+  // Función de Vercel (api/registro.js) que guarda la inscripción en la hoja privada
+  const errorEnvio = document.querySelector("#error-envio");
+
+  async function enviarRegistro(datos) {
+    const respuesta = await fetch("/api/registro", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datos),
+    });
+    if (respuesta.status === 409) {
+      throw new Error("Esta cédula ya está inscrita en el concurso.");
+    }
+    if (!respuesta.ok) {
+      throw new Error("No pudimos completar tu registro. Intenta de nuevo en unos minutos.");
+    }
   }
 
   formularioRegistro.addEventListener("submit", async (evento) => {
@@ -189,6 +200,8 @@
     botonEnviar.setAttribute("aria-busy", "true");
     botonEnviar.textContent = "Registrando…";
 
+    errorEnvio.hidden = true;
+
     try {
       await enviarRegistro(datos);
       document.querySelector("#confirmacion-nombre").textContent = datos.nombres.trim();
@@ -197,6 +210,9 @@
       formularioRegistro.hidden = true;
       confirmacion.hidden = false;
       confirmacion.focus();
+    } catch (error) {
+      errorEnvio.textContent = error.message;
+      errorEnvio.hidden = false;
     } finally {
       botonEnviar.disabled = false;
       botonEnviar.removeAttribute("aria-busy");
@@ -307,13 +323,19 @@
 
     tieneColumnaMes = iMes !== -1;
 
-    return filas.slice(1).map((columnas) => ({
-      nombre: (columnas[iNombre] || "").trim() || "Sin nombre",
-      codigo: iCodigo === -1 ? "" : (columnas[iCodigo] || "").trim(),
-      zona: iZona === -1 ? "" : (columnas[iZona] || "").trim(),
-      mes: tieneColumnaMes ? parseInt(columnas[iMes], 10) || 0 : 0,
-      total: parseInt(columnas[iTotal], 10) || 0,
-    }));
+    // Las redenciones son enteros: se ignoran separadores de miles ("1.200", "1,200")
+    const entero = (valor) => parseInt(String(valor || "").replace(/[^0-9]/g, ""), 10) || 0;
+
+    return filas
+      .slice(1)
+      .filter((columnas) => (columnas[iNombre] || "").trim() !== "")
+      .map((columnas) => ({
+        nombre: columnas[iNombre].trim(),
+        codigo: iCodigo === -1 ? "" : (columnas[iCodigo] || "").trim(),
+        zona: iZona === -1 ? "" : (columnas[iZona] || "").trim(),
+        mes: tieneColumnaMes ? entero(columnas[iMes]) : 0,
+        total: entero(columnas[iTotal]),
+      }));
   }
 
   // "carlos lopez" -> "Carlos L."
