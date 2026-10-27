@@ -7,7 +7,7 @@ Landing page y plataforma web oficial para el plan de incentivos de motorizados 
 ## 🚀 Características Principales
 
 - **Ranking en Tiempo Real:** Sincronización automática cada 30 segundos y manual con Google Sheets, a través de la función `api/ranking.js` (la URL de la hoja va en `RANKING_CSV_URL`).
-- **Inscripción Optimizada:** Formulario completo con validación estricta de campos (cédula, teléfono, nombres, área y correo) y consentimiento de datos.
+- **Inscripción Optimizada:** Formulario completo con validación estricta de campos (cédula, teléfono, nombres, área y correo) y consentimiento de datos. Las inscripciones se guardan en una hoja privada a través de `api/registro.js`.
 - **Diseño Moderno & Accesible:** Estética basada en tokens de diseño (Dark Navy + Neón Rosa/Magenta), cumplimiento de accesibilidad WCAG 2.2 AA y diseño responsivo para móviles y escritorio.
 - **Secciones Clave:**
   - Hero con llamada a la acción (CTA) y premio mensual de **$500.000 COP**.
@@ -58,6 +58,8 @@ Landing page y plataforma web oficial para el plan de incentivos de motorizados 
 | Variable | Descripción |
 | --- | --- |
 | `RANKING_CSV_URL` | URL del CSV publicado de la hoja del ranking (Google Sheets → Archivo → Compartir → Publicar en la web → CSV). La lee `api/ranking.js`. |
+| `REGISTRO_SCRIPT_URL` | URL `/exec` del Apps Script de la hoja privada de inscripciones (ver `apps-script/inscripciones.gs`). La usa `api/registro.js`. |
+| `REGISTRO_SECRETO` | Clave compartida con la propiedad `SECRETO` del Apps Script; evita que otros escriban en la hoja. |
 
 Configúrala en Vercel → Project Settings → Environment Variables.
 
